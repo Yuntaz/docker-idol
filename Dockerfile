@@ -4,8 +4,8 @@ ENV LANG en_US.utf8
 ENV TZ UTC
 ENV SHELL "/bin/bash"
 USER root
-RUN bash -c 'systemctl mask firewalld'
-RUN bash -c 'systemctl disable firewalld'
+RUN systemctl mask firewalld  && \
+	systemctl disable firewalld
 RUN yum -q -y update 
 RUN yum update tzdata 
 RUN yum -q -y install openssl which sudo
@@ -13,10 +13,10 @@ RUN /usr/bin/curl -o /usr/local/bin/gosu -SL 'https://github.com/tianon/gosu/rel
 RUN /bin/chmod +x /usr/local/bin/gosu 
 RUN useradd -ms /bin/bash idol
 ADD http://downloads.yuntaz.com/coes/connectors.tar.gz /opt
-RUN bash -c 'tar xzvf /opt/connectors.tar.gz --absolute-names'
-RUN bash -c 'chown -R idol /opt/HewlettPackardEnterprise'
-RUN bash -c 'chgrp -R idol /opt/HewlettPackardEnterprise'
-RUN bash -c 'ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/SMC/scripts/smc_service.sh smc_service'
+RUN tar xzvf /opt/connectors.tar.gz --absolute-names  && \ 
+	chown -R idol /opt/HewlettPackardEnterprise && \
+	chgrp -R idol /opt/HewlettPackardEnterprise  && \ 
+	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/SMC/scripts/smc_service.sh smc_service
 USER idol
 WORKDIR /home/idol
 RUN bash -c 'smc_service -a=start'
