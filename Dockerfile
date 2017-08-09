@@ -20,7 +20,7 @@ RUN tar xzvf /opt/connectors.tar.gz --absolute-names  && \
 RUN	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/SMC/scripts/smc_service.sh smc_service
 USER idol
 WORKDIR /home/idol
-RUN bash -c '/opt/HewlettPackardEnterprise/IDOLServer-11.4.0/SMC/scripts/smc_service.sh -a=start'
+RUN /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/SMC/scripts/smc_service.sh -a=start
 ENTRYPOINT ["/opt/HewlettPackardEnterprise/IDOLServer-11.4.0/docker-entrypoint.sh"]
 ADD ./docker-entrypoint.sh /opt/HewlettPackardEnterprise/IDOLServer-11.4.0
 EXPOSE 7025 7026 7027 7028 7029
