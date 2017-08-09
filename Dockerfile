@@ -21,5 +21,5 @@ RUN tar xzvf /opt/connectors.tar.gz --absolute-names  && \
 USER idol
 WORKDIR /home/idol
 ENTRYPOINT ["/opt/HewlettPackardEnterprise/IDOLServer-11.4.0/docker-entrypoint.sh"]
-ADD ./docker-entrypoint.sh /opt/HewlettPackardEnterprise/IDOLServer-11.4.0
+ADD ./docker-entrypoint.sh /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/
 EXPOSE 7025 7026 7027 7028 7029
