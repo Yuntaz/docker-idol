@@ -16,8 +16,8 @@ RUN mkdir /opt/HewlettPackardEnterprise
 ADD http://downloads.yuntaz.com/coes/connectors.tar.gz /opt
 RUN tar xzvf /opt/connectors.tar.gz --absolute-names  && \ 
 	chown -R idol /opt/HewlettPackardEnterprise && \
-	chgrp -R idol /opt/HewlettPackardEnterprise  && \ 
-	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/SMC/scripts/smc_service.sh smc_service
+	chgrp -R idol /opt/HewlettPackardEnterprise
+RUN	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/SMC/scripts/smc_service.sh smc_service
 USER idol
 WORKDIR /home/idol
 RUN bash -c 'smc_service -a=start'
