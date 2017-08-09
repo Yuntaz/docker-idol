@@ -1,6 +1,4 @@
 # Docker images for HPE IDOL
-
-Docker images collection for the HPE IDOL platform.
 HPE IDOL is a search engine with machine learning built to handle all kind of information, structured (office docs, databases and more) and unstructured (social media, video, audio and more).
 It's available with a demo licence. In this docker, you will need to provide it.
 
