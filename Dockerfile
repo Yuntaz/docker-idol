@@ -18,11 +18,11 @@ RUN tar xzvf /opt/connectors.tar.gz --absolute-names  && \
 	chown -R idol /opt/HewlettPackardEnterprise && \
 	chgrp -R idol /opt/HewlettPackardEnterprise && \
 	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/SMC/scripts/smc_service.sh smc_service
-USER idol
-WORKDIR /home/idol
 ENTRYPOINT ["/home/idol/docker-entrypoint.sh"]
 ADD ./docker-entrypoint.sh /home/idol/
 RUN chown -R idol /home/idol && \
 	chgrp -R idol /home/idol && \
 	chmod +x /home/idol/docker-entrypoint.sh
+USER idol
+WORKDIR /home/idol
 EXPOSE 7025 7026 7027 7028 7029
