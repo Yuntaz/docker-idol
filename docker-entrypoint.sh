@@ -11,7 +11,8 @@ function shut_down() {
 trap "shut_down" SIGKILL SIGTERM SIGHUP SIGINT EXIT
 
 echo 'Starting up'
-su - idol -c 'smc_service -a=start'
+su idol 
+smc_service -a=start
 
 echo "Connectors are now running"
 
