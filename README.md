@@ -14,9 +14,9 @@ OS | Version | Branch |
 You can use theses images on the following way:
 
 ```
-    docker run -p 7025:7025 yuntaz/idol:latest
+    docker run -it yuntaz/idol:latest
 ```
-
+'
 ## How to fuild from Dockerfile
 
 Use following command:
