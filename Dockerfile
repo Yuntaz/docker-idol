@@ -22,4 +22,7 @@ USER idol
 WORKDIR /home/idol
 ENTRYPOINT ["/home/idol/docker-entrypoint.sh"]
 ADD ./docker-entrypoint.sh /home/idol/
+RUN chown -R idol /home/idol && \
+	chgrp -R idol /home/idol && \
+	chmod +x /home/idol/docker-entrypoint.sh
 EXPOSE 7025 7026 7027 7028 7029
