@@ -15,7 +15,8 @@ RUN useradd -ms /bin/bash idol && \
 	echo "idol:idol!" | chpasswd
 RUN mkdir /opt/HewlettPackardEnterprise 
 ADD http://downloads.yuntaz.com/coes/connectors.tar.gz /opt
-RUN chown -R idol /opt/HewlettPackardEnterprise && \
+RUN chmod 666 /opt/connectors.tar.gz && \ 
+	chown -R idol /opt/HewlettPackardEnterprise && \
 	chgrp -R idol /opt/HewlettPackardEnterprise && \
 	tar xzf /opt/connectors.tar.gz && \ 
 	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/SMC/scripts/smc_service.sh smc_service
