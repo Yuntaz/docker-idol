@@ -14,10 +14,11 @@ RUN useradd -ms /bin/bash idol && \
     echo "idol ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/idol && \
     chmod 0440 /etc/sudoers.d/idol && \
 	echo "idol:idol!" | chpasswd
-ADD http://downloads.yuntaz.com/coes/connectors.tar.gz /opt
-RUN chmod 666 connectors.tar.gz && \ 
-	tar xzvf connectors.tar.gz  && \
+ADD http://downloads.yuntaz.com/docker/idol_11.4.0.tar.gz /opt
+RUN chmod 666 idol_11.4.0.tar.gz && \ 
+	tar xzvf idol_11.4.0.tar.gz  && \
 	chown -R idol:idol HewlettPackardEnterprise 
+RUN rm -rf idol_11.4.0.tar.gz
 WORKDIR /usr/bin
 RUN	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/SMC/scripts/smc_service.sh smc_service
 ENTRYPOINT ["/home/idol/docker-entrypoint.sh"]
@@ -26,4 +27,4 @@ RUN chown -R idol:idol /home/idol && \
 	chmod +x /home/idol/docker-entrypoint.sh
 USER idol
 WORKDIR /home/idol
-EXPOSE 7025 7026 7027 7028 7029
+EXPOSE 7000 7025 7026 7027 7028 7029 9030 9050 9080 9100 
