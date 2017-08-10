@@ -29,8 +29,8 @@ RUN	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/SMC/scripts/smc_servic
 # Add services to the systemctl
 WORKDIR /etc/systemd/system
 RUN cp /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/scripts/init/systemd/ /etc/systemd/system && \
-	chmod 666 *.service && \
-	systemctl enable licenseserver.service && \
+	chmod 666 *.service 
+RUN	systemctl enable licenseserver.service && \
 	systemctl enable content.service && \
 	systemctl enable agentstore.service && \
 	systemctl enable category.service && \
