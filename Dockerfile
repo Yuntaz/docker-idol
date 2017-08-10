@@ -3,8 +3,8 @@ MAINTAINER Yuntaz <docker@yuntaz.com>
 ENV LANG en_US.utf8
 ENV TZ UTC
 ENV SHELL "/bin/bash"
-ARG $LICENSE_FILE
-ARG $IDOL_TAR
+ARG LICENSE_FILE
+ARG IDOL_TAR
 USER root
 WORKDIR /opt
 # Disable Firewall
@@ -20,12 +20,12 @@ RUN useradd -ms /bin/bash idol && \
     chmod 0440 /etc/sudoers.d/idol && \
 	echo "idol:idol!" | chpasswd
 # Download installation & uncompress it
-ADD $IDOL_TAR /opt
+ADD ${IDOL_TAR} /opt
 RUN chmod 666 idol_11.4.0.tar.gz && \ 
 	tar xzvf idol_11.4.0.tar.gz  && \
 	chown -R idol:idol HewlettPackardEnterprise 
 RUN rm -rf idol_11.4.0.tar.gz
-ADD $LICENSE_FILE /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/licenseserver/licensekey.dat
+ADD ${LICENSE_FILE} /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/licenseserver/licensekey.dat
 WORKDIR /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/licenseserver
 RUN chown -R idol:idol * && \ 
 	chmod 666 licensekey.dat
