@@ -3,6 +3,8 @@ MAINTAINER Yuntaz <docker@yuntaz.com>
 ENV LANG en_US.utf8
 ENV TZ UTC
 ENV SHELL "/bin/bash"
+ARG $LICENSE_FILE
+ARG $IDOL_TAR
 USER root
 WORKDIR /opt
 # Disable Firewall
@@ -18,11 +20,15 @@ RUN useradd -ms /bin/bash idol && \
     chmod 0440 /etc/sudoers.d/idol && \
 	echo "idol:idol!" | chpasswd
 # Download installation & uncompress it
-ADD http://downloads.yuntaz.com/docker/idol_11.4.0.tar.gz /opt
+ADD $URL_IDOL /opt
 RUN chmod 666 idol_11.4.0.tar.gz && \ 
 	tar xzvf idol_11.4.0.tar.gz  && \
 	chown -R idol:idol HewlettPackardEnterprise 
 RUN rm -rf idol_11.4.0.tar.gz
+ADD $LICENSE_FILE /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/licenseserver/licensekey.dat
+WORKDIR /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/licenseserver
+RUN chown -R idol:idol * && \ 
+	chmod 666 licensekey.dat
 # Add smc_service script as a command
 WORKDIR /usr/bin
 RUN	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/SMC/scripts/smc_service.sh smc_service
