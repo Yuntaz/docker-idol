@@ -4,7 +4,9 @@ ENV LANG en_US.utf8
 ENV TZ UTC
 ENV SHELL "/bin/bash"
 ARG LICENSE_FILE
+ENV LICENSE_FILE=${LICENSE_FILE}
 ARG IDOL_TAR
+ENV IDOL_TAR=${IDOL_TAR}
 USER root
 WORKDIR /opt
 # Disable Firewall
@@ -20,7 +22,8 @@ RUN useradd -ms /bin/bash idol && \
     chmod 0440 /etc/sudoers.d/idol && \
 	echo "idol:idol!" | chpasswd
 # Download installation & uncompress it
-ADD ${IDOL_TAR} /opt
+RUN echo $IDOL_TAR
+ADD $IDOL_TAR /opt
 RUN chmod 666 idol_11.4.0.tar.gz && \ 
 	tar xzvf idol_11.4.0.tar.gz  && \
 	chown -R idol:idol HewlettPackardEnterprise 
