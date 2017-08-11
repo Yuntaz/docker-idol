@@ -1,16 +1,12 @@
 # Docker images for HPE IDOL
 HPE IDOL is a search engine with machine learning built to handle all kind of information, structured (office docs, databases and more) and unstructured (social media, video, audio and more).
-It's available with a demo licence. In this docker, you will need to provide it.
+**To run it, you will need a valid HPE IDOL license not provided here.** See below how to contact us if you want to see IDOL working.
+**If you are a customer from HPE IDOL, you can use your current IDOL license** to test the new version or just to use this software as your license says to do it.
 
 ## Branches & Operating systems. 
-Following IDOL/Operating systems versions are provided:
-
-OS | Version | Branch |
---- | --- | --- |
-**CentOS**| 7.0 | master |
+We provide here a container over CentOS7 with an HPE IDOL 11.4 installation. 
 
 ## Usage
-
 You can use theses images on the following way:
 
 ```
@@ -18,9 +14,7 @@ You can use theses images on the following way:
 ```
 '
 ## How to fuild from Dockerfile
-
 Use following command:
-
 ```
     docker build -f Dockerfile -t yuntaz/idol:<version> .
 ```
@@ -29,7 +23,7 @@ Use following command:
 Yuntaz is an HPE big data partner from Mexico.
 If you want to know more about IDOL platform, let's talk at [hi@yuntaz](mailto:hi@yuntaz.com)
 
-# Copyright Notice about HPE IDOL Copyright and it is License
+# Copyright Notice about HPE IDOL and the License
 HPE IDOL is a commercial software from Hewlett Packard Enterprise Development LP. 
 To run this docker image you will need a valid license from Hewlett Packard Enterprise.
 Here we don't provide a valid license. If you want to run it, please contact us as registerd partner from HPE at [hi@yuntaz](mailto:hi@yuntaz.com)

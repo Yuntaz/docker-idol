@@ -26,7 +26,7 @@ RUN systemctl mask firewalld  && \
 # Update Centos7 and install packages for IDOL
 RUN yum -q -y update 
 RUN yum update tzdata 
-RUN yum -q -y install openssl which sudo
+RUN yum install -y epel-release initscripts openssl which sudo bind bind-utils
 # Add idol user and add it to the sudoers
 RUN useradd -ms /bin/bash idol && \
     echo "idol ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/idol && \
