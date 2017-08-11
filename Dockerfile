@@ -11,6 +11,8 @@ MAINTAINER Yuntaz <docker@yuntaz.com>
 ENV LANG en_US.utf8
 ENV TZ UTC
 ENV SHELL "/bin/bash"
+ENV container docker
+
 # Setting up ARG and ENV variables
 ARG LICENSE_FILE_URL=http://downloads.yuntaz.com/docker/licensekey.dat
 ENV LICENSE_FILE ${LICENSE_FILE_URL}
@@ -20,6 +22,9 @@ ENV IDOL_TAR ${IDOL_TAR_URL}
 
 USER root
 WORKDIR /opt
+# Install initialization script, which will execute kickstart scripts and  then will start systemd as pid 1.
+RUN rpm -vi https://github.com/vlisivka/docker-centos7-systemd-unpriv/releases/download/v1.0/docker-centos7-systemd-unpriv-1.0-1.el7.centos.noarch.rpm
+
 # Disable Firewall
 RUN systemctl mask firewalld  && \
 	systemctl disable firewalld
