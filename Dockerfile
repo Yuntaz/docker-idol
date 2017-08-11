@@ -8,7 +8,7 @@ ARG LICENSE_FILE_URL=http://downloads.yuntaz.com/docker/licensekey.dat
 ENV LICENSE_FILE ${LICENSE_FILE_URL}
 
 ARG IDOL_TAR_URL=http://downloads.yuntaz.com/docker/idol_11.4.0.tar.gz
-ENV IDOL_TAR {$IDOL_TAR_URL}
+ENV IDOL_TAR ${IDOL_TAR_URL}
 
 USER root
 WORKDIR /opt
