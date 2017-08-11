@@ -27,4 +27,12 @@ Use following command:
 
 ## Author				 
 Yuntaz is an HPE big data partner from Mexico.
-If you want to know more about Vertica, let's talk hi@yuntaz.com
+If you want to know more about IDOL platform, let's talk at [hi@yuntaz](mailto:hi@yuntaz.com)
+
+# Copyright Notice about HPE IDOL Copyright and it is License
+HPE IDOL is a commercial software from Hewlett Packard Enterprise Development LP. 
+To run this docker image you will need a valid license from Hewlett Packard Enterprise.
+Here we don't provide a valid license. If you want to run it, please contact us as registerd partner from HPE at [hi@yuntaz](mailto:hi@yuntaz.com)
+Restricted Rights Legend: Confidential computer software. Valid license from HPE required for possession, use or copying. 
+Consistent with FAR 12.211 and 12.212, Commercial Computer Software, Computer Software Documentation, and
+Technical Data for Commercial Items are licensed to the U.S. Government under vendor's standard commercial license.

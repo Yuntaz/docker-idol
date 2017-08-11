@@ -1,3 +1,11 @@
+# HPE IDOL is a commercial software from Hewlett Packard Enterprise Development LP. 
+# To run this docker image you will need a valid license from Hewlett Packard Enterprise.
+# Here we don't provide a valid license. If you want to run it, please contact us as registerd partner from HPE at hi@yuntaz.com.
+# Restricted Rights Legend: Confidential computer software. Valid license from HPE required for possession, use or copying. 
+# Consistent with FAR 12.211 and 12.212, Commercial Computer Software, Computer Software Documentation, and
+# Technical Data for Commercial Items are licensed to the U.S. Government under vendor's standard commercial license.
+# Copyright Notice
+
 FROM centos:centos7
 MAINTAINER Yuntaz <docker@yuntaz.com>
 ENV LANG en_US.utf8
