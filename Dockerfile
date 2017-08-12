@@ -50,6 +50,8 @@ RUN chown -R idol:idol * && \
 	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/agentstore/stop-agentstore.sh	&& \
 	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/cfs/start-cfs.sh && \
 	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/cfs/stop-cfs.sh && \
+	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/category/start-category.sh && \
+	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/category/stop-category.sh && \
 	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/community/start-community.sh && \
 	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/community/stop-community.sh && \
 	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/content/start-content.sh && \
@@ -67,6 +69,8 @@ RUN	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/SMC/scripts/smc_servic
 	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/cfs/stop-cfs.sh stop-cfs && \
 	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/community/start-community.sh start-community && \
 	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/community/stop-community.sh stop-community && \
+	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/category/start-category.sh start-category && \
+	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/category/stop-category.sh stop-category && \
 	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/content/start-content.sh start-content && \
 	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/content/stop-content.sh stop-content && \
 	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/view/start-view.sh start-view && \

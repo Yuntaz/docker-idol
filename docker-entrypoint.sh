@@ -5,16 +5,15 @@ set -e
 function shut_down() {
 	echo "Shutting Down ..."
 	smc_service -a=stop
-	sudo systemctl start licenseserver.service
-	sudo systemctl start content.service 
-	sudo systemctl start category.service 
-	sudo systemctl start community.service 
-	sudo systemctl start agentstore.service 
-	sudo systemctl start view.service 
-	sudo systemctl start cfs.service
+	stop-agentstore 
+	stop-cfs 
+	stop-community 
+	stop-category
+	stop-content 
+	stop-view
+	stop-licenseserver
 	echo '======================================================================================================================================='
 	echo 'Thanks for using this container. Any comments/questions at hi@yuntaz.com'
-	echo 'Made with love at Mexico City'
 	echo '======================================================================================================================================='	
 }
 
@@ -29,13 +28,13 @@ echo 'to test the new version or just to use this software as your license says 
 echo '======================================================================================================================================='
 su idol 
 echo 'Starting up - Services ...'
-sudo systemctl start licenseserver.service
-sudo systemctl start content.service 
-sudo systemctl start category.service 
-sudo systemctl start community.service 
-sudo systemctl start agentstore.service 
-sudo systemctl start view.service 
-sudo systemctl start cfs.service
+start-licenseserver
+start-agentstore 
+start-cfs 
+start-community 
+start-category
+start-content 
+start-view 
 echo 'Starting up - Connectors ...'
 smc_service -a=start
 
