@@ -28,7 +28,7 @@ RUN systemctl mask firewalld  && \
 # Update Centos7 and install packages for IDOL
 RUN yum -q -y update && \
 	yum update tzdata && \
-	yum install -y epel-release initscripts openssl which sudo bind bind-utils net-tools
+	yum install -y epel-release initscripts openssl which sudo bind bind-utils net-tools wget
 # Add idol user and add it to the sudoers
 RUN useradd -ms /bin/bash idol && \
     echo "idol ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/idol && \
@@ -59,7 +59,6 @@ RUN chown -R idol:idol * && \
 	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/view/start-view.sh && \
 	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/view/stop-view.sh
 # Add scripts as a commands
-WORKDIR /usr/bin
 RUN	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/SMC/scripts/smc_service.sh smc_service && \
 	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/licenseserver/start-licenseserver.sh start-licenseserver && \
 	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/licenseserver/stop-licenseserver.sh stop-licenseserver && \
@@ -75,6 +74,11 @@ RUN	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/SMC/scripts/smc_servic
 	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/content/stop-content.sh stop-content && \
 	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/view/start-view.sh start-view && \
 	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/view/stop-view stop-view
+# Find
+WORKDIR /opt
+RUN wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie"   http://download.oracle.com/otn-pub/java/jdk/8u144-b01/090f390dda5b47b9b721c7dfaa008135/jdk-8u144-linux-x64.rpm -O /opt/jdk-8u144-linux-x64.rpm && \
+	yum -y install /opt/jdk-8u144-linux-x64.rpm && \
+	rm -f /opt/jdk-8u144-linux-x64.rpm
 # Entrypoint
 ENTRYPOINT ["/home/idol/docker-entrypoint.sh"]
 ADD ./docker-entrypoint.sh /home/idol/
@@ -82,4 +86,4 @@ RUN chown -R idol:idol /home/idol && \
 	chmod +x /home/idol/docker-entrypoint.sh
 USER idol
 WORKDIR /home/idol
-EXPOSE 7000 7025 7026 7027 7028 7029 9030 9050 9080 9100
+EXPOSE 7000 7025 7026 7027 7028 7029 9030 9050 9080 9100 8080

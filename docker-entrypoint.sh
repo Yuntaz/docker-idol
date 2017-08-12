@@ -4,14 +4,14 @@ set -e
 # IDOL should be shut down properly
 function shut_down() {
 	echo "Shutting Down ..."
-	smc_service -a=stop
-	stop-agentstore 
-	stop-cfs 
-	stop-community 
-	stop-category
-	stop-content 
-	stop-view
-	stop-licenseserver
+	su - idol -c 'smc_service -a=stop'
+	su - idol -c 'stop-agentstore' 
+	su - idol -c 'stop-cfs' 
+	su - idol -c 'stop-community' 
+	su - idol -c 'stop-category'
+	su - idol -c 'stop-content' 
+	su - idol -c 'stop-view'
+	su - idol -c 'stop-licenseserver'
 	echo '======================================================================================================================================='
 	echo 'Thanks for using this container. Any comments/questions at hi@yuntaz.com'
 	echo '======================================================================================================================================='	
@@ -26,18 +26,15 @@ echo 'and unstructured (social media, video, audio and more). To run it, you wil
 echo 'See below how to contact us if you want to see IDOL working. If you are a customer from HPE IDOL, you can use your current IDOL license'
 echo 'to test the new version or just to use this software as your license says to do it.'
 echo '======================================================================================================================================='
-su idol 
-echo 'Starting up - Services ...'
-start-licenseserver
-start-agentstore 
-start-cfs 
-start-community 
-start-category
-start-content 
-start-view 
-echo 'Starting up - Connectors ...'
-smc_service -a=start
-
+su - idol -c 'start-licenseserver'
+su - idol -c 'start-agentstore'
+su - idol -c 'start-cfs' 
+su - idol -c 'start-community' 
+su - idol -c 'start-category'
+su - idol -c 'start-content'
+su - idol -c 'start-view'
+su - idol -c 'smc_service -a=start'
+su - idol -c 'java -Dhp.find.home=/opt/HewlettPackardEnterprise/Find -Dserver.port=8080 -jar /opt/HewlettPackardEnterprise/Find/find.war -uriEncoding utf-8'
 while true; do
   sleep 1
 done
