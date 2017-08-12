@@ -1,6 +1,6 @@
 # Docker images for HPE IDOL
 HPE IDOL is a search engine with machine learning built to handle all kind of information, structured (office docs, databases and more) and unstructured (social media, video, audio and more).
-**To run it, you will need a valid HPE IDOL license not provided here.** See below how to contact us if you want to see IDOL working.
+**To run it, you will need a valid HPE IDOL license which is not provided here.** See below how to contact us if you want to see IDOL working.
 **If you are a customer from HPE IDOL, you can use your current IDOL license** to test the new version or just to use this software as your license says to do it.
 
 ## Branches & Operating systems. 
@@ -10,7 +10,7 @@ We provide here a container over CentOS7 with an HPE IDOL 11.4 installation.
 You can use theses images on the following way:
 
 ```
-    docker run -it yuntaz/idol:latest
+    docker run -it -rm yuntaz/idol:latest
 ```
 '
 ## How to fuild from Dockerfile

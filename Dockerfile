@@ -31,7 +31,16 @@ RUN systemctl mask firewalld  && \
 # Update Centos7 and install packages for IDOL
 RUN yum -q -y update 
 RUN yum update tzdata 
-RUN yum install -y epel-release initscripts openssl which sudo bind bind-utils
+RUN yum install -y epel-release initscripts openssl which sudo bind bind-utils net-tools systemd
+# Systemd
+RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done); 
+	rm -f /lib/systemd/system/multi-user.target.wants/*;
+	rm -f /etc/systemd/system/*.wants/*;
+	rm -f /lib/systemd/system/local-fs.target.wants/*; 
+	rm -f /lib/systemd/system/sockets.target.wants/*udev*; 
+	rm -f /lib/systemd/system/sockets.target.wants/*initctl*; 
+	rm -f /lib/systemd/system/basic.target.wants/*;
+	rm -f /lib/systemd/system/anaconda.target.wants/*;
 # Add idol user and add it to the sudoers
 RUN useradd -ms /bin/bash idol && \
     echo "idol ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/idol && \
@@ -74,4 +83,7 @@ RUN chown -R idol:idol /home/idol && \
 	chmod +x /home/idol/docker-entrypoint.sh
 USER idol
 WORKDIR /home/idol
-EXPOSE 7000 7025 7026 7027 7028 7029 9030 9050 9080 9100 
+# systemd
+VOLUME [ “/sys/fs/cgroup” ]
+CMD [“/usr/sbin/init”]
+EXPOSE 7000 7025 7026 7027 7028 7029 9030 9050 9080 9100
