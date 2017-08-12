@@ -6,7 +6,7 @@
 # Technical Data for Commercial Items are licensed to the U.S. Government under vendor's standard commercial license.
 # Copyright Notice
 
-FROM lloydbenson:docker-centos-7-systemd
+FROM centos:7
 MAINTAINER Yuntaz <docker@yuntaz.com>
 ENV LANG en_US.utf8
 ENV TZ UTC
@@ -43,26 +43,34 @@ RUN rm -rf idol_11.4.0.tar.gz
 ADD ${LICENSE_FILE} /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/licenseserver/licensekey.dat
 WORKDIR /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/licenseserver
 RUN chown -R idol:idol * && \ 
-	chmod 666 licensekey.dat
-# Add smc_service script as a command
+	chmod 666 licensekey.dat && \
+	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/licenseserver/start-licenseserver.sh && \
+	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/licenseserver/stop-licenseserver.sh && \
+	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/agentstore/start-agentstore.sh && \
+	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/agentstore/stop-agentstore.sh	&& \
+	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/cfs/start-cfs.sh && \
+	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/cfs/stop-cfs.sh && \
+	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/community/start-community.sh && \
+	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/community/stop-community.sh && \
+	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/content/start-content.sh && \
+	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/content/stop-content.sh && \
+	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/view/start-view.sh && \
+	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/view/stop-view.sh
+# Add scripts as a commands
 WORKDIR /usr/bin
-RUN	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/SMC/scripts/smc_service.sh smc_service
-# Add services to the systemctl
-WORKDIR /etc/systemd/system
-RUN cp /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/scripts/init/systemd/*.service /etc/systemd/system && \
-	chmod 664 *.service 
-RUN	systemctl enable licenseserver.service && \
-	systemctl enable content.service && \
-	systemctl enable agentstore.service && \
-	systemctl enable category.service && \
-	systemctl enable community.service && \
-	systemctl enable view.service && \
-	systemctl enable statsserver.service && \
-	systemctl enable controller.service && \
-	systemctl enable coordinator.service && \
-	systemctl enable filesystemconnector.service && \
-	systemctl enable webconnector.service && \
-	systemctl enable cfs.service
+RUN	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/SMC/scripts/smc_service.sh smc_service && \
+	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/licenseserver/start-licenseserver.sh start-licenseserver && \
+	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/licenseserver/stop-licenseserver.sh stop-licenseserver && \
+	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/agentstore/start-agentstore.sh start-agentstore && \
+	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/agentstore/stop-agentstore.sh	stop-agentstore && \
+	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/cfs/start-cfs.sh start-cfs && \
+	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/cfs/stop-cfs.sh stop-cfs && \
+	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/community/start-community.sh start-community && \
+	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/community/stop-community.sh stop-community && \
+	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/content/start-content.sh start-content && \
+	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/content/stop-content.sh stop-content && \
+	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/view/start-view.sh start-view && \
+	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/view/stop-view stop-view
 # Entrypoint
 ENTRYPOINT ["/home/idol/docker-entrypoint.sh"]
 ADD ./docker-entrypoint.sh /home/idol/
