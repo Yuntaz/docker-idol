@@ -34,7 +34,7 @@ su - idol -c 'start-category'
 su - idol -c 'start-content'
 su - idol -c 'start-view'
 su - idol -c 'smc_service -a=start'
-su - idol -c 'java -Dhp.find.home=/opt/HewlettPackardEnterprise/Find -Dserver.port=8080 -jar /opt/HewlettPackardEnterprise/Find/find.war -uriEncoding utf-8'
+su - idol -c 'java -Dhp.find.home=/opt/HewlettPackardEnterprise/Find/home -Dserver.port=8080 -jar /opt/HewlettPackardEnterprise/Find/find.war -uriEncoding utf-8'
 while true; do
   sleep 1
 done
