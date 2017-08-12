@@ -6,7 +6,7 @@
 # Technical Data for Commercial Items are licensed to the U.S. Government under vendor's standard commercial license.
 # Copyright Notice
 
-FROM centos:systemd
+FROM lloydbenson:docker-centos-7-systemd
 MAINTAINER Yuntaz <docker@yuntaz.com>
 ENV LANG en_US.utf8
 ENV TZ UTC
