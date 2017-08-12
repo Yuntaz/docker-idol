@@ -6,7 +6,7 @@
 # Technical Data for Commercial Items are licensed to the U.S. Government under vendor's standard commercial license.
 # Copyright Notice
 
-FROM centos:centos7
+FROM centos:systemd
 MAINTAINER Yuntaz <docker@yuntaz.com>
 ENV LANG en_US.utf8
 ENV TZ UTC
@@ -22,33 +22,19 @@ ENV IDOL_TAR ${IDOL_TAR_URL}
 
 USER root
 WORKDIR /opt
-# Install initialization script, which will execute kickstart scripts and  then will start systemd as pid 1.
-RUN rpm -vi https://github.com/vlisivka/docker-centos7-systemd-unpriv/releases/download/v1.0/docker-centos7-systemd-unpriv-1.0-1.el7.centos.noarch.rpm
-
 # Disable Firewall
 RUN systemctl mask firewalld  && \
 	systemctl disable firewalld
 # Update Centos7 and install packages for IDOL
-RUN yum -q -y update 
-RUN yum update tzdata 
-RUN yum install -y epel-release initscripts openssl which sudo bind bind-utils net-tools systemd
-# Systemd
-# https://developers.redhat.com/blog/2014/05/05/running-systemd-within-docker-container/
-RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done); && \
-	rm -f /lib/systemd/system/multi-user.target.wants/*; && \
-	rm -f /etc/systemd/system/*.wants/*; && \
-	rm -f /lib/systemd/system/local-fs.target.wants/*; && \
-	rm -f /lib/systemd/system/sockets.target.wants/*udev*; && \
-	rm -f /lib/systemd/system/sockets.target.wants/*initctl*; && \
-	rm -f /lib/systemd/system/basic.target.wants/*; && \
-	rm -f /lib/systemd/system/anaconda.target.wants/*;
+RUN yum -q -y update && \
+	yum update tzdata && \
+	yum install -y epel-release initscripts openssl which sudo bind bind-utils net-tools
 # Add idol user and add it to the sudoers
 RUN useradd -ms /bin/bash idol && \
     echo "idol ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/idol && \
     chmod 0440 /etc/sudoers.d/idol && \
 	echo "idol:idol!" | chpasswd
 # Download installation & uncompress it
-RUN echo $IDOL_TAR
 ADD $IDOL_TAR /opt
 RUN chmod 666 idol_11.4.0.tar.gz && \ 
 	tar xzvf idol_11.4.0.tar.gz  && \
@@ -84,7 +70,4 @@ RUN chown -R idol:idol /home/idol && \
 	chmod +x /home/idol/docker-entrypoint.sh
 USER idol
 WORKDIR /home/idol
-# systemd
-VOLUME [ “/sys/fs/cgroup” ]
-CMD [“/usr/sbin/init”]
 EXPOSE 7000 7025 7026 7027 7028 7029 9030 9050 9080 9100
