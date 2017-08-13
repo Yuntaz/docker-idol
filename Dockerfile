@@ -59,6 +59,7 @@ RUN chown -R idol:idol * && \
 	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/view/start-view.sh && \
 	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/view/stop-view.sh
 # Add scripts as a commands
+WORKDIR /usr/bin
 RUN	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/SMC/scripts/smc_service.sh smc_service && \
 	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/licenseserver/start-licenseserver.sh start-licenseserver && \
 	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/licenseserver/stop-licenseserver.sh stop-licenseserver && \
