@@ -110,6 +110,11 @@ function smc_service_start() {
 	nohup smc_service -a=start > /dev/null 2> /dev/null &
 }
 
+function smc_service_stop() {
+	echo "Stopping Connectors..."
+	sudo smc_service -a=stop
+}
+
 # IDOL should be shut down properly
 function shut_down() {
 	echo "Shutting Down ..."
@@ -124,6 +129,8 @@ function shut_down() {
 	echo '======================================================================================================================================='
 	echo 'Thanks for using this container. Any comments/questions at hi@yuntaz.com'
 	echo '======================================================================================================================================='	
+	kill -s SIGTERM $!                                                         
+	exit 0  	
 }
 
 trap "shut_down" SIGKILL SIGTERM SIGHUP SIGINT EXIT
@@ -144,6 +151,9 @@ start-content
 start-view
 smc_service_start
 start-find
-while true; do
-  sleep 1
+
+while [ 1 ]                                                                
+do                                                                         
+  sleep 60 &                                                             
+  wait $!                                                                
 done
