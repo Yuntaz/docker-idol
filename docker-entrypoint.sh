@@ -149,8 +149,8 @@ start-community
 start-category
 start-content
 start-view
-smc_service_start
-start-find
+#smc_service_start
+#start-find
 
 while [ 1 ]                                                                
 do                                                                         
