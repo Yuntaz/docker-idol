@@ -149,9 +149,9 @@ start-community
 start-category
 start-content
 start-view
-#smc_service_start
-#start-find
-
+smc_service_start
+start-find
+su idol -c "/bin/bash"
 while [ 1 ]                                                                
 do                                                                         
   sleep 60 &                                                             
