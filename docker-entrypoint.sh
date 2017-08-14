@@ -47,9 +47,8 @@ start-content
 start-view
 smc_service_start
 start-find
-su idol -c "/bin/bash"
-while [ 1 ]                                                                
-do                                                                         
-  sleep 60 &                                                             
-  wait $!                                                                
+su - idol -c '/bin/bash'
+
+while true; do
+  sleep 1
 done
