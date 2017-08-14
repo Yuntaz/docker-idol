@@ -22,6 +22,7 @@ function shut_down() {
 	stop-content
 	stop-view
 	stop-licenseserver
+	stop-find
 	echo '======================================================================================================================================='
 	echo 'Thanks for using this container. Any comments/questions at hi@yuntaz.com'
 	echo '======================================================================================================================================='	
@@ -45,8 +46,8 @@ start-community
 start-category
 start-content
 start-view
-smc_service_start
 start-find
+smc_service_start
 su - idol -c '/bin/bash'
 
 while true; do

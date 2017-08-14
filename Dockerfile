@@ -58,7 +58,8 @@ RUN chown -R idol:idol * && \
 	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/content/stop-content.sh && \
 	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/view/start-view.sh && \
 	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/view/stop-view.sh && \
-	chmod 774 /opt/HewlettPackardEnterprise/Find/start-find.sh
+	chmod 774 /opt/HewlettPackardEnterprise/Find/start-find.sh && \
+	chmod 774 /opt/HewlettPackardEnterprise/Find/stop-find.sh	
 # Add scripts as a commands
 WORKDIR /usr/bin
 RUN	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/SMC/scripts/smc_service.sh smc_service && \
@@ -76,7 +77,8 @@ RUN	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/SMC/scripts/smc_servic
 	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/content/stop-content.sh stop-content && \
 	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/view/start-view.sh start-view && \
 	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/view/stop-view stop-view && \
-	ln -s /opt/HewlettPackardEnterprise/Find/start-find.sh start-find
+	ln -s /opt/HewlettPackardEnterprise/Find/start-find.sh start-find && \
+	ln -s /opt/HewlettPackardEnterprise/Find/stop-find.sh stop-find	
 # Find
 WORKDIR /opt
 RUN wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie"   http://download.oracle.com/otn-pub/java/jdk/8u144-b01/090f390dda5b47b9b721c7dfaa008135/jdk-8u144-linux-x64.rpm -O /opt/jdk-8u144-linux-x64.rpm && \
