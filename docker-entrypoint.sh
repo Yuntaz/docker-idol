@@ -56,6 +56,7 @@ curl --silent --output /dev/null -d "action=RoleAddUserToRole&RoleName=FindBI&Us
 curl --silent --output /dev/null -d "action=RoleAddUserToRole&RoleName=FindAdmin&UserName=idol" http://localhost:9030
 
 #echo 'Uploading information to IDOL'
+curl --silent --output /dev/null http://localhost:9101/DRECREATEDBASE?DREDbName=Articles
 curl --silent --output /dev/null http://localhost:9101/DREADD?/opt/test.idx
 
 su - idol -c '/bin/bash'
