@@ -10,7 +10,7 @@ We provide here a container over CentOS7 with an HPE IDOL 11.4 installation.
 You can use theses images on the following way:
 
 ```
-docker run -it -rm -p 7000:7000 -p 17000:17000 -p 7025:7025 -p 17025:17025 -p 7026:7026 -p 17026:17026 -p 7027:7027 -p 17027:17027 -p 7028:7028 -p 17028:17028 -p 7029:7029 -p 17029:17029 -p 9020:9020 -p 9022:9022 -p 9030:9030 -p 9050:9050 -p 9080:9080 -p 9100:9100 -p 9101:9101 -p 9102:9102 -p 8080:8080 -p 20000:20000 yuntaz/idol:latest
+docker run -it --rm -p 7000:7000 -p 17000:17000 -p 7025:7025 -p 17025:17025 -p 7026:7026 -p 17026:17026 -p 7027:7027 -p 17027:17027 -p 7028:7028 -p 17028:17028 -p 7029:7029 -p 17029:17029 -p 9020:9020 -p 9022:9022 -p 9030:9030 -p 9050:9050 -p 9080:9080 -p 9100:9100 -p 9101:9101 -p 9102:9102 -p 8080:8080 -p 20000:20000 yuntaz/idol:latest
 ```
 
 ## How to fuild from Dockerfile
