@@ -47,17 +47,6 @@ start-category
 start-content
 start-view
 start-find
-#smc_service_start
-
-#echo 'Adding user: idol password: idol ...'
-curl --silent --output /dev/null -d "action=UserAdd&UserName=idol&Password=idol" http://localhost:9030
-curl --silent --output /dev/null -d "action=RoleAddUserToRole&RoleName=FindUser&UserName=idol" http://localhost:9030
-curl --silent --output /dev/null -d "action=RoleAddUserToRole&RoleName=FindBI&UserName=idol" http://localhost:9030
-curl --silent --output /dev/null -d "action=RoleAddUserToRole&RoleName=FindAdmin&UserName=idol" http://localhost:9030
-
-#echo 'Uploading information to IDOL'
-#curl --silent --output /dev/null http://localhost:9101/DRECREATEDBASE?DREDbName=Articles
-#curl --silent --output /dev/null http://localhost:9101/DREADD?/opt/test.idx
 
 su - idol -c '/bin/bash'
 
