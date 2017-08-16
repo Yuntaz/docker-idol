@@ -40,6 +40,7 @@ RUN useradd -ms /bin/bash idol && \
 # Download installation & uncompress it
 ADD $IDOL_TAR /opt
 ADD $TEST_FILE /opt
+RUN chmod 666 /opt/test.idx
 RUN chmod 666 idol_11.4.0.tar.gz && \ 
 	tar xzvf idol_11.4.0.tar.gz  && \
 	chown -R idol:idol HewlettPackardEnterprise 

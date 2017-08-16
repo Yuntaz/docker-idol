@@ -40,13 +40,31 @@ echo 'See below how to contact us if you want to see IDOL working. If you are a 
 echo 'to test the new version or just to use this software as your license says to do it.'
 echo '======================================================================================================================================='
 start-licenseserver
+sleep 5
 start-agentstore
+sleep 5
 start-cfs
+sleep 5
 start-community
+sleep 5
 start-category
+sleep 5
 start-content
+sleep 5
 start-view
+sleep 5
 start-find
+
+sleep 10
+#echo 'Adding user: idol password: idol ...'
+curl --silent --output /dev/null -d "action=UserAdd&UserName=idol&Password=idol" http://localhost:9030
+curl --silent --output /dev/null -d "action=RoleAddUserToRole&RoleName=FindUser&UserName=idol" http://localhost:9030
+curl --silent --output /dev/null -d "action=RoleAddUserToRole&RoleName=FindBI&UserName=idol" http://localhost:9030
+curl --silent --output /dev/null -d "action=RoleAddUserToRole&RoleName=FindAdmin&UserName=idol" http://localhost:9030
+
+#echo 'Uploading information to IDOL'
+curl --silent --output /dev/null http://localhost:9101/DRECREATEDBASE?DREDbName=Articles
+curl --silent --output /dev/null http://localhost:9101/DREADD?/opt/test.idx
 
 su - idol -c '/bin/bash'
 
