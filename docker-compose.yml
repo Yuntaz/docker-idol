@@ -1,0 +1,64 @@
+# All Rights Reserved
+# This software is proprietary information of
+# Akurey
+# Use is subject to license terms.
+# Filename: docker-compose.yml
+#/
+
+#
+# Author:      ajimenez@akurey.com
+# Date:        21/08/2017
+# Description: This docker compose is used to deploy the enviornment with mongo and the idol server.
+
+#To run first do a docker-compose build
+#Then docker-compose run --service-ports idol_server mongodb
+
+version : "3.2"
+services:
+  idol_server:
+    build :
+      context: ./
+      dockerfile: Dockerfile.idol
+    ports:
+      - "7000:7000"
+      - "17000:17000"
+      - "7025:7025"
+      - "17025:17025"
+      - "7026:7026"
+      - "17026:17026"
+      - "7027:7027"
+      - "17027:17027"
+      - "7028:7028"
+      - "17028:17028"
+      - "7029:7029"
+      - "17029:17029"
+      - "9020:9020"
+      - "9022:9022"
+      - "9030:9030"
+      - "9050:9050"
+      - "9080:9080"
+      - "9100:9100"
+      - "9101:9101"
+      - "9102:9102"
+      - "8080:8080"
+      - "20000:20000"
+      - "13000:13000"
+      - "13002:13002"
+      - "8000:8000"
+    volumes:
+       - ".:/poc_api"
+    links:
+        - "mongodb"
+    depends_on:
+        - "mongodb"
+  mongodb:
+    image:          mongo:latest
+    container_name: "mongodb"
+    environment:
+        - "MONGO_DATA_DIR=/data/db"
+        - "MONGO_LOG_DIR=/dev/null"
+    volumes:
+        - "./data/db:/data/db"
+    ports:
+        - "27017:27017"
+    command:        mongod --smallfiles --logpath=/dev/null # --quiet
