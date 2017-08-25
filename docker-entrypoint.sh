@@ -23,6 +23,7 @@ function shut_down() {
 	stop-view
 	stop-licenseserver
 	stop-find
+	stop-eductionserver
 	echo '======================================================================================================================================='
 	echo 'Thanks for using this container. Any comments/questions at hi@yuntaz.com'
 	echo '======================================================================================================================================='	
@@ -54,6 +55,8 @@ sleep 5
 start-view
 sleep 5
 start-find
+sleep 5
+start-eductionserver
 
 sleep 10
 #echo 'Adding user: idol password: idol ...'

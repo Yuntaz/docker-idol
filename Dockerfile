@@ -63,8 +63,11 @@ RUN chown -R idol:idol * && \
 	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/content/stop-content.sh && \
 	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/view/start-view.sh && \
 	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/view/stop-view.sh && \
+	chmod 774 /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/view/stop-view.sh && \
+	chmod 774 /opt/HewlettPackardEnterprise/EductionSDK_11.4.0/bin/start-eductionserver.sh && \
+	chmod 774 /opt/HewlettPackardEnterprise/EductionSDK_11.4.0/bin/stop-eductionserver.sh && \
 	chmod 774 /opt/HewlettPackardEnterprise/Find/start-find.sh && \
-	chmod 774 /opt/HewlettPackardEnterprise/Find/stop-find.sh	
+	chmod 774 /opt/HewlettPackardEnterprise/Find/stop-find.sh
 # Add scripts as a commands
 WORKDIR /usr/bin
 RUN	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/SMC/scripts/smc_service.sh smc_service && \
@@ -82,6 +85,8 @@ RUN	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/SMC/scripts/smc_servic
 	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/content/stop-content.sh stop-content && \
 	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/view/start-view.sh start-view && \
 	ln -s /opt/HewlettPackardEnterprise/IDOLServer-11.4.0/view/stop-view stop-view && \
+	ln -s /opt/HewlettPackardEnterprise/EductionSDK_11.4.0/bin/start-eductionserver.sh start-eductionserver && \
+	ln -s /opt/HewlettPackardEnterprise/EductionSDK_11.4.0/bin/stop-eductionserver.sh stop-eductionserver && \
 	ln -s /opt/HewlettPackardEnterprise/Find/start-find.sh start-find && \
 	ln -s /opt/HewlettPackardEnterprise/Find/stop-find.sh stop-find	
 # Find
