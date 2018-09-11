@@ -15,13 +15,13 @@ ENV SHELL "/bin/bash"
 ENV container docker
 
 # Setting up ARG and ENV variables
-ARG LICENSE_FILE_URL=http://downloads.yuntaz.com/docker/licensekey.dat
+ARG LICENSE_FILE_URL=https://downloads.yuntaz.com/docker/licensekey.dat
 ENV LICENSE_FILE ${LICENSE_FILE_URL}
 
-ARG TEST_FILE_URL=http://downloads.yuntaz.com/docker/test.idx
+ARG TEST_FILE_URL=https://downloads.yuntaz.com/docker/test.idx
 ENV TEST_FILE ${TEST_FILE_URL}
 
-ARG IDOL_TAR_URL=http://downloads.yuntaz.com/docker/idol_11.4.0.tar.gz
+ARG IDOL_TAR_URL=https://downloads.yuntaz.com/docker/idol_11.4.0.tar.gz
 ENV IDOL_TAR ${IDOL_TAR_URL}
 
 USER root
